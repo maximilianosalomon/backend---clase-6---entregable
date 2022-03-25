@@ -21,8 +21,3 @@ app.get("/productos", (req, res) => {
 app.get("/productosRandom", (req, res) => {
   res.send("respuesta");
 });
-
-////DE LA CLASE 6
-// app.get("/fyh", (req, res) => {
-//   res.send({ fyh: new Date().toLocaleString() });
-// });
