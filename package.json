@@ -6,7 +6,6 @@
   "dependencies": {
     "express": "^4.17.3"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node server.js",
     "test": "nodemon server.js"

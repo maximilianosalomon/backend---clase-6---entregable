@@ -79,6 +79,11 @@ class Contenedor {
     const items = [];
     await this.writeFile(items);
   }
+  async getRandom (min, max) {
+    const numRandom = await parseInt((Math.random() * (max - min) + min)+1);
+    return numRandom;
+  }                                                   
 }
+
 
 module.exports = Contenedor;

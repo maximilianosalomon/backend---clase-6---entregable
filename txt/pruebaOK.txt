@@ -1,0 +1,5 @@
+app.get("/productos", async  (req, res) => {
+    const archivo = await fs.promises.readFile("./productos.txt", "utf-8");
+  // const nombreArchivo = "./productos.txt"
+  res.send(archivo);
+});

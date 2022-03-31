@@ -1,9 +1,10 @@
 //init
 const express = require("express");
 const app = express();
+// app.use(express.json)
+// app.use(express.urlencoded({extended:true}))
 
-//import
-// const productos = require("./listaProductos");//original
+// import
 const Contenedor = require("./archivos");
 const Item = require("./item");
 
@@ -12,7 +13,7 @@ const archivo = new Contenedor("./productos.txt");
 const nuevoItem = new Item("Lapiz", "50", "imagenLapiz");
 
 //server
-const PORT = process.env.port || 8080; //si uso 0(cero) toma un puerto al azar de los disponibles
+const PORT = process.env.port || 8080;
 const server = app.listen(PORT, () => {
   console.log(`Servidor http escuchando en el puerto ${server.address().port}`);
 });
@@ -20,14 +21,18 @@ server.on("error", (error) => console.log(`Error en servidor ${error}`));
 
 //rutas
 //ruta productos
-app.get("/productos", (req, res) => {
-  const productos = archivo.getAll();
-  const productosString = JSON.stringify(productos, null, 10);
-  res.send(productosString);
-
-  // res.send("<h1>masi</h1>");
+app.get("/productos", async (req, res) => {
+  const productos = await archivo.getAll();
+  res.send(JSON.stringify(productos, null, 10));
 });
+
 //ruta productos random
-app.get("/productosRandom", (req, res) => {
-  res.send("Respuesta Productos Random!!");
+//aca debo llamar al metodo getByID(), eligiendo el id mediante Random
+app.get("/productosRandom", async (req, res) => {
+  //agregar async ??
+  //agregar funcion numero random
+  // console.log(getRandom(1,3))
+  const random = await archivo.getRandom(0,3)
+  const productoRandom = await archivo.getById(random)
+  res.send(productoRandom);
 });
